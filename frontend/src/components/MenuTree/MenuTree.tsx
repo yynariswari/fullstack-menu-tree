@@ -52,11 +52,11 @@ export default function MenuTree({ onSelect }: MenuTreeProps) {
   const filteredMenus = search ? filterTree(menus, search) : menus;
 
   if (loading) {
-    return <div className="w-1/2 border-r bg-white p-6">Loading...</div>;
+    return <div className="w-1/2 bg-white p-6">Loading...</div>;
   }
 
   return (
-    <div className="w-1/2 border-r bg-white p-6">
+    <div className="w-1/2 bg-white p-6">
       <h2 className="text-xl font-semibold mb-4">Menu Tree</h2>
 
       <SearchBar value={search} onChange={setSearch} />
