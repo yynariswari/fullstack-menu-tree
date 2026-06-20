@@ -4,6 +4,7 @@ import (
 	"fullstack-menu-tree/backend/config"
 	"fullstack-menu-tree/backend/routes"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	swaggerFiles "github.com/swaggo/files"
@@ -22,6 +23,26 @@ func main() {
 	config.ConnectDatabase()
 
 	router := gin.Default()
+
+	// CORS
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{
+			"http://localhost:5173",
+		},
+		AllowMethods: []string{
+			"GET",
+			"POST",
+			"PUT",
+			"DELETE",
+			"OPTIONS",
+		},
+		AllowHeaders: []string{
+			"Origin",
+			"Content-Type",
+			"Accept",
+			"Authorization",
+		},
+	}))
 
 	routes.SetupMenuRoutes(router)
 
