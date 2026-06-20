@@ -1,19 +1,28 @@
 # Fullstack Menu Tree
 
-Technical Test Submission - Fullstack Menu Tree System
+Technical Test - Fullstack Menu Management System
 
-## Overview
+## Features
 
-This project is a fullstack web application for managing hierarchical menu structures (tree menus).
+### Backend
 
-Features include:
+- REST API using Golang + Gin
+- PostgreSQL Database
+- GORM ORM
+- Swagger Documentation
+- Recursive Menu Tree API
+- CRUD Menu Management
 
-- Menu Tree Visualization
-- Create Menu
-- Edit Menu
-- Delete Menu
+### Frontend
+
+- React + TypeScript + Vite
+- Tailwind CSS
+- Recursive Tree View
 - Search Menu
-- Swagger API Documentation
+- Create Menu
+- Update Menu
+- Delete Menu
+- Responsive Sidebar
 
 ---
 
@@ -22,7 +31,7 @@ Features include:
 ### Backend
 
 - Golang
-- Gin Framework
+- Gin
 - GORM
 - PostgreSQL
 - Swagger
@@ -32,7 +41,7 @@ Features include:
 - React
 - TypeScript
 - Vite
-- Tailwind CSS
+- TailwindCSS
 - Axios
 
 ---
@@ -40,78 +49,42 @@ Features include:
 ## Project Structure
 
 ```text
-backend/
-frontend/
+fullstack-menu-tree
+│
+├── backend
+│   ├── cmd
+│   ├── config
+│   ├── controllers
+│   ├── docs
+│   ├── models
+│   ├── routes
+│   └── services
+│
+├── frontend
+│   ├── src
+│   │   ├── components
+│   │   ├── services
+│   │   ├── pages
+│   │   └── types
+│
+├── screenshots
+│
+└── README.md
 ```
 
 ---
 
-## Backend Setup
+## Environment Variables
 
-### 1. Navigate to backend folder
+Create `.env` file inside `backend` folder:
 
-```bash
-cd backend
-```
-
-### 2. Install dependencies
-
-```bash
-go mod tidy
-```
-
-### 3. Configure database
-
-Update PostgreSQL connection settings in:
-
-```text
-backend/config/database.go
-```
-
-### 4. Run application
-
-```bash
-go run ./cmd/main.go
-```
-
-Backend will run on:
-
-```text
-http://localhost:8080
-```
-
-Swagger documentation:
-
-```text
-http://localhost:8080/swagger/index.html
-```
-
----
-
-## Frontend Setup
-
-### 1. Navigate to frontend folder
-
-```bash
-cd frontend
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Run application
-
-```bash
-npm run dev
-```
-
-Frontend will run on:
-
-```text
-http://localhost:5173
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=menu_tree
+DB_SSLMODE=disable
 ```
 
 ---
@@ -120,35 +93,68 @@ http://localhost:5173
 
 | Method | Endpoint       | Description    |
 | ------ | -------------- | -------------- |
-| GET    | /api/menus     | Get menu tree  |
-| GET    | /api/menus/:id | Get menu by ID |
+| GET    | /api/menus     | Get all menus  |
+| GET    | /api/menus/:id | Get menu by id |
 | POST   | /api/menus     | Create menu    |
 | PUT    | /api/menus/:id | Update menu    |
 | DELETE | /api/menus/:id | Delete menu    |
 
 ---
 
-## Features Implemented
+## Run Backend
 
-### Backend
+```bash
+cd backend
 
-- REST API
-- PostgreSQL Integration
-- Menu Tree Builder
-- CRUD Operations
-- Swagger Documentation
+go mod tidy
 
-### Frontend
+go run ./cmd/main.go
+```
 
-- Recursive Menu Tree
-- Search Functionality
-- Create Menu
-- Update Menu
-- Delete Menu
-- Loading State
+Backend:
+
+```text
+http://localhost:8080
+```
+
+Swagger:
+
+```text
+http://localhost:8080/swagger/index.html
+```
+
+---
+
+## Run Frontend
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Swagger API
+
+![Swagger](screenshots/swagger.png)
 
 ---
 
 ## Author
 
-Technical Test Submission
+Yuniar Nariswari
