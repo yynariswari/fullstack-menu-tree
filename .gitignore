@@ -1,0 +1,25 @@
+# Go
+bin/
+vendor/
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# Swagger generated files
+docs/swagger.json
+docs/swagger.yaml
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

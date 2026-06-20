@@ -1,0 +1,205 @@
+basePath: /api
+definitions:
+  models.Menu:
+    properties:
+      children:
+        description: Children []Menu `gorm:"foreignKey:ParentID;-:migration" json:"children,omitempty"`
+        items:
+          $ref: '#/definitions/models.Menu'
+        type: array
+      created_at:
+        type: string
+      depth:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+      parent_id:
+        type: integer
+      sort_order:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  validators.CreateMenuRequest:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: integer
+    required:
+    - name
+    type: object
+  validators.UpdateMenuRequest:
+    properties:
+      name:
+        type: string
+      parent_id:
+        type: integer
+    required:
+    - name
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Fullstack Menu Tree Technical Test
+  title: Menu Tree API
+  version: "1.0"
+paths:
+  /menus:
+    get:
+      description: Get menu tree hierarchy
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Menu'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get all menus
+      tags:
+      - Menus
+    post:
+      consumes:
+      - application/json
+      description: Create a new menu
+      parameters:
+      - description: Menu Data
+        in: body
+        name: menu
+        required: true
+        schema:
+          $ref: '#/definitions/validators.CreateMenuRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create menu
+      tags:
+      - Menus
+  /menus/{id}:
+    delete:
+      description: Delete menu by ID
+      parameters:
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete menu
+      tags:
+      - Menus
+    get:
+      description: Get single menu by ID
+      parameters:
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get menu by ID
+      tags:
+      - Menus
+    put:
+      consumes:
+      - application/json
+      description: Update menu by ID
+      parameters:
+      - description: Menu ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Menu Data
+        in: body
+        name: menu
+        required: true
+        schema:
+          $ref: '#/definitions/validators.UpdateMenuRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Menu'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update menu
+      tags:
+      - Menus
+swagger: "2.0"
